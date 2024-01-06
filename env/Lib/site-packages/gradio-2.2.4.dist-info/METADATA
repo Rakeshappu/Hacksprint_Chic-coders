@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: gradio
+Version: 2.2.4
+Summary: Python library for easily interacting with trained machine learning models
+Home-page: https://github.com/gradio-app/gradio-UI
+Author: Abubakar Abid
+Author-email: a12d@stanford.edu
+License: Apache License 2.0
+Keywords: machine learning,visualization,reproducibility
+Platform: UNKNOWN
+Requires-Dist: Flask-Cors (>=3.0.8)
+Requires-Dist: Flask-Login
+Requires-Dist: Flask (>=1.1.1)
+Requires-Dist: analytics-python
+Requires-Dist: ffmpy
+Requires-Dist: flask-cachebuster
+Requires-Dist: markdown2
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: paramiko
+Requires-Dist: pillow
+Requires-Dist: pycryptodome
+Requires-Dist: requests
+Requires-Dist: scipy
+
+UNKNOWN
+
+

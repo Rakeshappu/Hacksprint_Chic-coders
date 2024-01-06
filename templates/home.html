@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
+  <style>
+		h1 {
+			color: mediumseagreen;
+			text-align: center;
+		}
+
+		.warning {
+			color: red;
+			font-weight: bold;
+			text-align: center;
+		}
+		.card{
+		margin-left:410px;
+		margin-top: 20px;
+		color: white;
+		}
+		.container{
+		background:#edf2f7;
+		font-weight: bold;
+		padding-bottom:10px;
+		border-radius: 15px;
+		}
+        
+	</style>
+
+
+
+
+  <body style="background:#BCBBB8">
+ <div class="container my-3 mt-3">
+    <br>
+      <h1 class="text-success">Crop Yield Prediction  System <span class="text-success"></span></h1><br><br>
+
+<!--      adding form-->
+      <form action="/predict" method="POST">
+          <div class="row">
+              <div class="col-md-4">
+					<label for="Nitrogen">Enter the location</label><br>
+					<select name="district" id="district" class="form-control">
+                        <option value="District">Select District</option>
+                        <option value="Bagalkot">Bagalkot</option>
+                        <option value="Ballari">Ballari</option>
+                        <option value="Belagavi">Belagavi</option>
+                        <option value="Bengaluru Rural">Bengaluru Rural</option>
+                        <option value="Bengaluru Urban">Bengaluru Urban</option>
+                        <option value="Bidar">Bidar</option>
+                        <option value="Chamarajanagar">Chamarajanagar</option>
+                        <option value="Chikkaballapur">Chikkaballapur</option>
+                        <option value="Chikkamagaluru">Chikkamagaluru</option>
+                        <option value="Chitradurga">Chitradurga</option>
+                        <option value="Dakshina Kannada">Dakshina Kannada</option>
+                        <option value="Davanagere">Davanagere</option>
+                        <option value="Dharwad">Dharwad</option>
+                        <option value="Gadag">Gadag</option>
+                        <option value="Hassan">Hassan</option>
+                        <option value="Haveri">Haveri</option>
+                        <option value="Kalaburagi">Kalaburagi</option>
+                        <option value="Kodagu">Kodagu</option>
+                        <option value="Kolar">Kolar</option>
+                        <option value="Koppal">Koppal</option>
+                        <option value="Mandya">Mandya</option>
+                        <option value="Mysuru">Mysuru</option>
+                        <option value="Raichur">Raichur</option>
+                        <option value="Ramanagara">Ramanagara</option>
+                        <option value="Shivamogga">Shivamogga</option>
+                        <option value="Tumakuru">Tumakuru</option>
+                        <option value="Udupi">Udupi</option>
+                        <option value="Uttara Kannada">Uttara Kannada</option>
+                        <option value="Vijayapura">Vijayapura</option>
+                        <option value="Yadgir">Yadgir</option>
+                    </select>
+                    </div>
+              
+              <div class="col-md-4">
+					<label for="Nitrogen">Nitrogen</label>
+					<input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control" required step="0">
+				</div>
+               <div class="col-md-4">
+					<label for="Phosporus">Phosphorus</label>
+					<input type="number" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus" class="form-control" required step="00">
+				</div>
+				<div class="col-md-4">
+					<label for="Potassium">Potassium</label>
+					<input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control" required step="0">
+				</div>
+          </div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Temperature">Temperature</label>
+					<input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="Humidity">Humidity</label>
+					<input type="number" step="0.01" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="pH">pH</label>
+					<input type="number" step="0.01" id="Ph" name="Ph" placeholder="Enter pH value" class="form-control" required step="0">
+				</div>
+			</div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Rainfall">Rainfall</label>
+					<input type="number" step="0.01" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
+				</div>
+			</div>
+
+
+
+           <div class="row mt-4">
+
+           <div class="col-md-12 text-center">
+				<button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+			</div>
+			</div>
+      </form>
+
+
+
+       {% if result %}
+		<div class="card bg-dark" style="width: 18rem;">
+		  <img src="{{url_for('static', filename='img.jpg')}}" class="card-img-top" alt="...">
+		  <div class="card-body">
+			<h5 class="card-title">Recommend Crop for cultivation is:</h5>
+			<p class="card-text">{{ result }}</p>
+		  </div>
+		</div>
+	   {% endif %}
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+  </body>
+</html>
+
+
+<!-- HTML !-->
+<button class="button-22" role="button">Button 22</button>
+
+/* CSS */
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
+}
